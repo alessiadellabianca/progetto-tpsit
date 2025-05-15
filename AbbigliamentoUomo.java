@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AbbigliamentoUomo extends JFrame{
 
@@ -18,7 +19,7 @@ public class AbbigliamentoUomo extends JFrame{
     int conto=0;
     String[] carrello=new String[25];
     int cont=0;
-    public AbbigliamentoUomo() {
+    public AbbigliamentoUomo(ArrayList<String> carrello,ArrayList<Integer> conto) {
         JComboBox<String> abb = new JComboBox<>(abbigliamentoUomo);
         setTitle("Catalogo abbigliamento uomo");
         abb.setBounds(20, 20, 150, 25);
@@ -56,9 +57,8 @@ public class AbbigliamentoUomo extends JFrame{
                         public void actionPerformed(ActionEvent e) {
                             JButton premuto = (JButton) e.getSource();
                             if (premuto == agg) {
-                                conto = conto + prezzo;
-                                carrello[cont] = prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -70,9 +70,8 @@ public class AbbigliamentoUomo extends JFrame{
                         public void actionPerformed(ActionEvent e) {
                             JButton premuto = (JButton) e.getSource();
                             if (premuto == agg) {
-                                conto = conto + prezzo;
-                                carrello[cont] = prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -84,9 +83,8 @@ public class AbbigliamentoUomo extends JFrame{
                         public void actionPerformed(ActionEvent e) {
                             JButton premuto = (JButton) e.getSource();
                             if (premuto == agg) {
-                                conto = conto + prezzo;
-                                carrello[cont] = prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });

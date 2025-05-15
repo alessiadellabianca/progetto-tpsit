@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AbbigliamentoDonna extends JFrame {
     float conto=0;
@@ -25,8 +26,9 @@ public class AbbigliamentoDonna extends JFrame {
     JButton vis= new JButton("VISUALIZZA CARRELLO");
 
     JComboBox<String> abb = new JComboBox<>(abbigliamentoDonna);
+    int prezzo=0;
 
-    public AbbigliamentoDonna()
+    public AbbigliamentoDonna(ArrayList<String> carrello,ArrayList<Integer> conto)
     {
         setTitle("Catalogo abbigliamento donna");
         abb.setBounds(20, 20, 150, 25);
@@ -56,7 +58,7 @@ public class AbbigliamentoDonna extends JFrame {
 
         listaProdotti.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                float prezzo;
+
                 String prodotto = listaProdotti.getSelectedValue();
                 if (prodotto.equals("Felpa nera")) {
                     prezzo=50;
@@ -67,9 +69,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -83,9 +84,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -100,9 +100,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -116,9 +115,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -132,9 +130,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -148,9 +145,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -164,9 +160,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -180,9 +175,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -196,9 +190,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -212,9 +205,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -228,9 +220,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -244,9 +235,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -260,9 +250,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -276,9 +265,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -292,9 +280,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -308,9 +295,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -324,9 +310,8 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton premuto=(JButton)e.getSource();
                             if(premuto==agg)
                             {
-                                conto=conto+prezzo;
-                                carrello[cont]=prodotto;
-                                cont++;
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
                             }
                         }
                     });
@@ -340,24 +325,29 @@ public class AbbigliamentoDonna extends JFrame {
                 JButton premuto=(JButton)e.getSource();
                 if(premuto==vis)
                 {
+                    int tot=0;
                     JFrame finestraCarrello = new JFrame("Carrello");
                     finestraCarrello.setSize(400, 300);
                     finestraCarrello.setLayout(new BorderLayout());
+                    JButton t=new JButton("Torna alla zona acquisti");
                     JTextArea car = new JTextArea();
                     StringBuilder contenuto = new StringBuilder("PRODOTTI NEL CARRELLO:\n\n");
-
-                    for(int i=0;i<cont;i++)
+                    contenuto.append("- ").append(carrello).append("\n");
+                    for(Integer c:conto)
                     {
-                        contenuto.append("- ").append(carrello[i]).append("\n");
+                        tot=tot+c;
                     }
-                    contenuto.append("\nTOTALE: €").append(conto);
+                    contenuto.append("\nTOTALE: €").append(tot);
 
                     car.setText(contenuto.toString());
                     finestraCarrello.add(new JScrollPane(car), BorderLayout.CENTER);
                     finestraCarrello.setVisible(true);
+
                 }
             }
         });
+
+
 
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
