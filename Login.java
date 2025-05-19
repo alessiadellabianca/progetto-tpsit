@@ -5,6 +5,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,8 +23,15 @@ public class Login extends JFrame {
     JButton accedi = new JButton("ACCEDI");
     JButton registati = new JButton("REGISTRATI");
     JButton amministatore = new JButton("PERSONALE");
+    List<String> righe = new ArrayList<>();
 
     public Login() {
+        try {
+            righe=Files.readAllLines(Paths.get("testo.txt"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setTitle("Login");
         this.setLayout(new GridBagLayout());
         GridBagConstraints b = new GridBagConstraints();
@@ -81,14 +92,25 @@ public class Login extends JFrame {
 
         this.accedi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 JButton premuto = (JButton)e.getSource();
                 if (Login.this.nomeDainserire.getText().equals("")) {
                     JOptionPane.showMessageDialog((Component)null, "inserisci nome utente");
                 } else if (Login.this.passwordDainserire.getText().equals("")) {
                     JOptionPane.showMessageDialog((Component)null, "inserisci password");
-                } else if(premuto==accedi){
-                    dispose();
-                    new Menu();
+                } else{
+                    for (int i=0;i<righe.size()-1;i+=2) {
+                        String user = righe.get(i).trim();
+                        String pass = righe.get(i + 1).trim();
+
+                        if(user.equalsIgnoreCase(nomeDainserire.getText().trim()) && pass.equals(passwordDainserire.getText().trim()))
+                        {
+                            dispose();
+                            new Menu();
+                            return;
+                        }
+                    }
+                    JOptionPane.showMessageDialog((Component)null, "credenziali errate o effettua registrazione");
                 }
             }
         });

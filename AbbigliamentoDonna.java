@@ -24,6 +24,7 @@ public class AbbigliamentoDonna extends JFrame {
     };
     JButton agg= new JButton("AGGIUNGI AL CARRELLO");
     JButton vis= new JButton("VISUALIZZA CARRELLO");
+    JButton tornaMenu=new JButton("CAMBIA CATEGORIA");
 
     JComboBox<String> abb = new JComboBox<>(abbigliamentoDonna);
     int prezzo=0;
@@ -41,8 +42,10 @@ public class AbbigliamentoDonna extends JFrame {
         add(dettagli);
         agg.setBounds(20, 210, 200, 30);
         vis.setBounds(270, 210, 200, 30);
+        tornaMenu.setBounds(100, 270, 200, 30);
         add(agg);
         add(vis);
+        add(tornaMenu);
 
 
 
@@ -74,7 +77,7 @@ public class AbbigliamentoDonna extends JFrame {
                             }
                         }
                     });
-                } else if(prodotto.equals("Felpa bianca"))
+                } else if(prodotto.equals("Felpa Bianca"))
                 {
                     prezzo=45;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: felpa tinta unica con cappuccio");
@@ -225,7 +228,7 @@ public class AbbigliamentoDonna extends JFrame {
                             }
                         }
                     });
-                }else if(prodotto.equals("Jeans a pallazzo"))
+                }else if(prodotto.equals("Jeans a palazzo"))
                 {
                     prezzo=75;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €75.00\nDescrizione: semplice jeans largo sulle gambe");
@@ -347,11 +350,24 @@ public class AbbigliamentoDonna extends JFrame {
             }
         });
 
+        tornaMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton c=(JButton)e.getSource();
+                if(tornaMenu==c)
+                {
+                    new Menu();
+                }
+            }
+        });
+
+
+
 
 
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(700,300);
+        setSize(700,350);
         setVisible(true);
 
     }

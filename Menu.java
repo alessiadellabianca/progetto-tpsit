@@ -68,9 +68,47 @@ public class Menu extends JFrame {
 
                  }
             }
+        }
+
+        );
+
+        bottoneCerca.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton c=(JButton)e.getSource();
+                if(c==bottoneCerca)
+                {
+                    if(ricerca.getText().equals("abbigliamento donna")||ricerca.getText().equals("Abbigliamento donna"))
+                    {
+                        new AbbigliamentoDonna(carrello,conto);
+
+                    }else if(ricerca.getText().equals("abbigliamento uomo")||ricerca.getText().equals("Abbigliamento uomo"))
+                    {
+                        new AbbigliamentoUomo(carrello,conto);
+
+                    }else if(ricerca.getText().equals("libri")||ricerca.getText().equals("Libri"))
+                    {
+
+
+                    }else if(ricerca.getText().equals("informatica")||ricerca.getText().equals("Informatica"))
+                    {
+
+
+                    }else
+                    {
+                        JOptionPane.showMessageDialog(null,"Ricerca non possibile,riprova");
+                    }
+                }
+            }
         });
 
     }
 
+    public void setCarrello(ArrayList<String> carrello) {
+        this.carrello = carrello;
+    }
 
+    public void setConto(ArrayList<Integer> conto) {
+        this.conto = conto;
+    }
 }
