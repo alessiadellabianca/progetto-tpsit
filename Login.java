@@ -25,6 +25,7 @@ public class Login extends JFrame {
     JButton amministatore = new JButton("PERSONALE");
     List<String> righe = new ArrayList<>();
 
+
     public Login() {
         try {
             righe=Files.readAllLines(Paths.get("testo.txt"));
@@ -104,6 +105,7 @@ public class Login extends JFrame {
 
                         if(user.equalsIgnoreCase(nomeDainserire.getText().trim()) && pass.equals(passwordDainserire.getText().trim()))
                         {
+
                             dispose();
                             new Menu();
                             return;

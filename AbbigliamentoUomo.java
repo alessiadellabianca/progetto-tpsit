@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AbbigliamentoUomo extends JFrame{
 
@@ -14,10 +17,32 @@ public class AbbigliamentoUomo extends JFrame{
             {"Jeans skinny","Jeans bianchi"},
     };
 
+    String[][] descrizioni = {
+            {"felpa tinta unica con cappuccio", "felpa tinta unica con cappuccio", "felpa con stampa e cappuccio"},
+            {"Maglione lana pura", "Maglione colorato con ricamo"},
+            {"maglia tinta unita", "T-shirt adidas con logo sul retro"},
+            {"Jeans versione stretta", "Jeans bianchi a palazzo"}
+    };
+
+    int[][] prezzi = {
+            {50, 45, 30},
+            {55, 45},
+            {30, 25},
+            {45, 45}
+    };
+
     JButton agg= new JButton("AGGIUNGI AL CARRELLO");
     JButton vis= new JButton("VISUALIZZA CARRELLO");
     JButton tornaMenu=new JButton("CAMBIA CATEGORIA");
+    List<String> righe = new ArrayList<>();
     public AbbigliamentoUomo(ArrayList<String> carrello,ArrayList<Integer> conto) {
+
+            try {
+                righe= Files.readAllLines(Paths.get("listauomo.txt"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         JComboBox<String> abb = new JComboBox<>(abbigliamentoUomo);
         setTitle("Catalogo abbigliamento uomo");
         abb.setBounds(20, 20, 150, 25);
@@ -50,123 +75,75 @@ public class AbbigliamentoUomo extends JFrame{
                 int prezzo;
                 String prodotto = listaProdotti.getSelectedValue();
                 if (prodotto.equals("Felpa nera")) {
-                    prezzo = 50;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: felpa tinta unica con cappuccio");
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton premuto = (JButton) e.getSource();
-                            if (premuto == agg) {
-                                carrello.add(prodotto);
-                                conto.add(prezzo);
-                            }
-                        }
-                    });
-                } else if (prodotto.equals("Felpa rossa")) {
-                    prezzo = 45;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: felpa tinta unica con cappuccio");
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton premuto = (JButton) e.getSource();
-                            if (premuto == agg) {
-                                carrello.add(prodotto);
-                                conto.add(prezzo);
-                            }
-                        }
-                    });
-                }else if (prodotto.equals("Felpa cappuccio")) {
-                    prezzo = 30;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: felpa con stampa e cappuccio");
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton premuto = (JButton) e.getSource();
-                            if (premuto == agg) {
-                                carrello.add(prodotto);
-                                conto.add(prezzo);
-                            }
-                        }
+                    if (righe.contains(prodotto)) {
+                        prezzo = 50;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: felpa tinta unica con cappuccio");
+                    } else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
 
-                    });
-                }else if (prodotto.equals("Maglione lana")) {
-                    prezzo = 55;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Maglione lana pura");
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton premuto = (JButton) e.getSource();
-                            if (premuto == agg) {
-                                carrello.add(prodotto);
-                                conto.add(prezzo);
-                            }
-                        }
-                    });
-                }else if (prodotto.equals("Maglione con papera")) {
-                    prezzo = 45;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Maglione colorato con ricamo");
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton premuto = (JButton) e.getSource();
-                            if (premuto == agg) {
-                                carrello.add(prodotto);
-                                conto.add(prezzo);
-                            }
-                        }
-                    });
+                } else if (prodotto.equals("Felpa rossa")) {
+                    if (righe.contains(prodotto)) {
+                        prezzo = 45;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: felpa tinta unica con cappuccio");
+                    } else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
+
+                }else if (prodotto.equals("Felpa cappuccio")) {
+                    if (righe.contains(prodotto)) {
+                        prezzo = 30;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: felpa con stampa e cappuccio");
+                    } else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
+              }else if (prodotto.equals("Maglione lana")) {
+                    if (righe.contains(prodotto)) {
+                        prezzo = 55;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Maglione lana pura");
+                    } else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
+               }else if (prodotto.equals("Maglione con papera")) {
+                    if (righe.contains(prodotto)) {
+                        prezzo = 45;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Maglione colorato con ricamo");
+                    } else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
+
                 }else if (prodotto.equals("Maglia bianca")) {
-                    prezzo = 30;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: maglia tinta unita");
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton premuto = (JButton) e.getSource();
-                            if (premuto == agg) {
-                                carrello.add(prodotto);
-                                conto.add(prezzo);
-                            }
-                        }
-                    });
+                    if (righe.contains(prodotto)) {
+                        prezzo = 30;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: maglia tinta unita");
+                    } else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
+
                 }else if (prodotto.equals("Maglia adidas")) {
-                    prezzo = 25;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: T-shirt adidas con logo sul retro");
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton premuto = (JButton) e.getSource();
-                            if (premuto == agg) {
-                                carrello.add(prodotto);
-                                conto.add(prezzo);
-                            }
-                        }
-                    });
+                    if (righe.contains(prodotto)) {
+                        prezzo = 25;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: T-shirt adidas con logo sul retro");
+                    } else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
+
                 }else if (prodotto.equals("Jeans skinny")) {
-                    prezzo = 45;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Jeans versione stretta");
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton premuto = (JButton) e.getSource();
-                            if (premuto == agg) {
-                                carrello.add(prodotto);
-                                conto.add(prezzo);
-                            }
-                        }
-                    });
+                    if (righe.contains(prodotto)) {
+                        prezzo = 45;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Jeans versione stretta");
+                    } else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
+
                 }else if (prodotto.equals("Jeans bianchi")) {
-                    prezzo = 45;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Jenas bianchi a palazzo");
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton premuto = (JButton) e.getSource();
-                            if (premuto == agg) {
-                                carrello.add(prodotto);
-                                conto.add(prezzo);
-                            }
-                        }
-                    });
+                    if (righe.contains(prodotto)) {
+                        prezzo = 45;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Jenas bianchi a palazzo");
+                    } else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
+
                 }
             }
         });
@@ -185,6 +162,7 @@ public class AbbigliamentoUomo extends JFrame{
                     JTextArea car = new JTextArea();
                     StringBuilder contenuto = new StringBuilder("PRODOTTI NEL CARRELLO:\n\n");
                     contenuto.append("- ").append(carrello).append("\n");
+                    JButton termina=new JButton("CONCLUDI ORDINE");
                     for(Integer c:conto)
                     {
                         tot=tot+c;
@@ -193,7 +171,19 @@ public class AbbigliamentoUomo extends JFrame{
 
                     car.setText(contenuto.toString());
                     finestraCarrello.add(new JScrollPane(car), BorderLayout.CENTER);
+                    finestraCarrello.add(termina,BorderLayout.NORTH);
                     finestraCarrello.setVisible(true);
+
+                    termina.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JButton prem=(JButton)e.getSource();
+                            if(prem==termina)
+                            {
+                                new GestioneOrdine(carrello,conto);
+                            }
+                        }
+                    });
 
                 }
             }
@@ -206,6 +196,31 @@ public class AbbigliamentoUomo extends JFrame{
                 if(tornaMenu==c)
                 {
                     new Menu();
+                }
+            }
+        });
+
+        listaProdotti.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int catIndex = abb.getSelectedIndex();
+                int prodIndex = listaProdotti.getSelectedIndex();
+
+              if (catIndex>=0&&prodIndex>=0) {
+                    String nome = tutti[catIndex][prodIndex];
+                    int prezzo = prezzi[catIndex][prodIndex];
+                    String descrizione = descrizioni[catIndex][prodIndex];
+
+                    dettagli.setText("Prodotto: " + nome + "\nPrezzo: €" + prezzo + "\nDescrizione: " + descrizione);
+
+                    for (ActionListener al : agg.getActionListeners()) {
+                        agg.removeActionListener(al);
+                    }
+
+                    agg.addActionListener(ae -> {
+                        carrello.add(nome);
+                        conto.add(prezzo);
+                        JOptionPane.showMessageDialog(null, nome + " aggiunto al carrello!");
+                    });
                 }
             }
         });

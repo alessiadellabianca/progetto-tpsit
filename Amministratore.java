@@ -67,7 +67,7 @@ public class Amministratore extends JFrame {
                     {
                         if(passwordDainserire.getText().equals("amministratore2025"))
                         {
-                            new AbbigliamentoDonnaAmm();
+                            new Menuamm();
                         }
                         else {
                             JOptionPane.showMessageDialog(null,"accesso bloccato");
