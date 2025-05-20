@@ -28,7 +28,6 @@ public class Login extends JFrame {
     public Login() {
         try {
             righe=Files.readAllLines(Paths.get("testo.txt"));
-
         } catch (Exception e) {
             e.printStackTrace();
         }

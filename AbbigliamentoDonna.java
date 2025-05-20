@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AbbigliamentoDonna extends JFrame {
-    float conto=0;
-    int cont=0;
-    String[] carrello=new String[20];
-
     String[] abbigliamentoDonna = new String[]{"Felpe","Maglioni","T-Shirt","Jeans","Pantaloncini","Slip","Sport"};
 
     String[][] tutti= {
@@ -19,18 +19,29 @@ public class AbbigliamentoDonna extends JFrame {
             {"Shorts in Jeans","Shorts in lino"},
             {"Slip bianco","Slip nero"},
             {"Scarpe running"},
-
-
     };
     JButton agg= new JButton("AGGIUNGI AL CARRELLO");
     JButton vis= new JButton("VISUALIZZA CARRELLO");
     JButton tornaMenu=new JButton("CAMBIA CATEGORIA");
+    List<String> righe = new ArrayList<>();
 
     JComboBox<String> abb = new JComboBox<>(abbigliamentoDonna);
     int prezzo=0;
 
     public AbbigliamentoDonna(ArrayList<String> carrello,ArrayList<Integer> conto)
     {
+        try {
+            righe= Files.readAllLines(Paths.get("listadonna.txt"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (String[] categoria : tutti) {
+            for (String prodotto : categoria) {
+                righe.add(prodotto);
+            }
+        }
+
         setTitle("Catalogo abbigliamento donna");
         abb.setBounds(20, 20, 150, 25);
         add(abb);
@@ -95,6 +106,7 @@ public class AbbigliamentoDonna extends JFrame {
 
                 }  else if(prodotto.equals("Felpa con zip"))
                 {
+
                     prezzo=30;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:+"+prezzo+"\nDescrizione: felpa tinta unica con zip, disponibile in altri colori");
                     agg.addActionListener(new ActionListener() {
@@ -110,6 +122,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 } else if(prodotto.equals("Maglione lana"))
                 {
+
                     prezzo=65;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: maglione 100% in lana, caldo e confortevole");
                     agg.addActionListener(new ActionListener() {
@@ -125,6 +138,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 } else if(prodotto.equals("Maglione con orso"))
                 {
+
                     prezzo=55;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: maglione con orso ricamato, colorato e lavorato a mano");
                     agg.addActionListener(new ActionListener() {
@@ -140,6 +154,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 } else if(prodotto.equals("Maglione lavorato"))
                 {
+
                     prezzo=90;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: lavorato a mano da ditta tedesca");
                     agg.addActionListener(new ActionListener() {
@@ -155,6 +170,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Maglia bianca"))
                 {
+
                     prezzo=10;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: semplice maglia bianca in cotone morbido");
                     agg.addActionListener(new ActionListener() {
@@ -170,6 +186,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Maglia nike"))
                 {
+
                     prezzo=30;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €30.00\nDescrizione: maglia marca 'nike' con stampa sul retro");
                     agg.addActionListener(new ActionListener() {
@@ -185,6 +202,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Maglia con stampa"))
                 {
+
                     prezzo=40;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €40.00\nDescrizione: maglietta con stampa tramonto sul retro");
                     agg.addActionListener(new ActionListener() {
@@ -215,6 +233,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Jeans skinny"))
                 {
+
                     prezzo=50;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €50.00\nDescrizione: jeans versione stretta su cosce e polpacci");
                     agg.addActionListener(new ActionListener() {
@@ -230,6 +249,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Jeans a palazzo"))
                 {
+
                     prezzo=75;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €75.00\nDescrizione: semplice jeans largo sulle gambe");
                     agg.addActionListener(new ActionListener() {
@@ -245,6 +265,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Shorts in jeans"))
                 {
+
                     prezzo=25;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €25.00\nDescrizione: jeans elastici a metà coscia");
                     agg.addActionListener(new ActionListener() {
@@ -260,6 +281,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Shorts in lino"))
                 {
+
                     prezzo=15;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €15.00\nDescrizione: in lino puro morbido e fresco");
                     agg.addActionListener(new ActionListener() {
@@ -275,6 +297,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Slip bianco"))
                 {
+
                     prezzo=5;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €5\nDescrizione: slip tinta unita");
                     agg.addActionListener(new ActionListener() {
@@ -290,6 +313,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Slip nero"))
                 {
+
                     prezzo=5;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €5\nDescrizione: slip tinta unita");
                     agg.addActionListener(new ActionListener() {
@@ -305,6 +329,7 @@ public class AbbigliamentoDonna extends JFrame {
                     });
                 }else if(prodotto.equals("Scarpe running"))
                 {
+
                     prezzo=110;
                     dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €110.00\nDescrizione: scarpe adatte per la corsa");
                     agg.addActionListener(new ActionListener() {
@@ -342,6 +367,8 @@ public class AbbigliamentoDonna extends JFrame {
                     }
                     contenuto.append("\nTOTALE: €").append(tot);
 
+
+
                     car.setText(contenuto.toString());
                     finestraCarrello.add(new JScrollPane(car), BorderLayout.CENTER);
                     finestraCarrello.setVisible(true);
@@ -361,10 +388,19 @@ public class AbbigliamentoDonna extends JFrame {
             }
         });
 
+        try {
+            StringBuilder sb = new StringBuilder();
+            for (String riga : righe) {
+                sb.append(riga).append("\n");
+            }
 
-
-
-
+            Files.writeString(Paths.get("listadonna.txt"), sb.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+            dispose();
+            new Login();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");
+            ex.printStackTrace();
+        }
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(700,350);

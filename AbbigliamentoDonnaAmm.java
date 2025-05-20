@@ -5,9 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class AbbigliamentoDonnaAmm extends JFrame {
-        float conto=0;
-        int cont=0;
-        String[] carrello=new String[20];
 
         String[] abbigliamentoDonna = new String[]{"Felpe","Maglioni","T-Shirt","Jeans","Pantaloncini","Slip","Sport"};
 
@@ -19,8 +16,6 @@ public class AbbigliamentoDonnaAmm extends JFrame {
                 {"Shorts in Jeans","Shorts in lino"},
                 {"Slip bianco","Slip nero"},
                 {"Scarpe running"},
-
-
         };
         JButton elimina=new JButton("RENDI NON DISPONIBILE");
         JButton tornaMenu=new JButton("CAMBIA CATEGORIA");
@@ -246,6 +241,7 @@ public class AbbigliamentoDonnaAmm extends JFrame {
                                 if(premuto==elimina)
                                 {
                                     dettagli.setText("prodotto non dispobile");
+
                                 }
                             }
                         });
@@ -320,7 +316,7 @@ public class AbbigliamentoDonnaAmm extends JFrame {
                     JButton c=(JButton)e.getSource();
                     if(tornaMenu==c)
                     {
-                        new Menu();
+                       new AbbigliamentoUomoAmm();
                     }
                 }
             });

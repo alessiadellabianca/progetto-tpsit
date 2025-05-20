@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Registrazione extends JFrame {
 
@@ -19,9 +24,15 @@ public class Registrazione extends JFrame {
     JTextField password2Dainserire = new JTextField(20);
     JButton registati = new JButton("REGISTRATI");
     JButton accedi = new JButton("ACCEDI");
+    List<String> righe = new ArrayList<>();
 
     public Registrazione()
     {
+        try {
+            righe= Files.readAllLines(Paths.get("testo.txt"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setTitle("Registrazione");
         setLayout(new GridBagLayout());
         GridBagConstraints b = new GridBagConstraints();
@@ -97,14 +108,29 @@ public class Registrazione extends JFrame {
                 } else if (password.getText().equals("")) {
                     JOptionPane.showMessageDialog((Component)null, "Dati non completi");
                 } else if (password2.getText().equals("")) {
-                    JOptionPane.showMessageDialog((Component)null, "Dati non completi");
-                } /*else if (password.equals(password2)==false) {
-                    JOptionPane.showMessageDialog((Component)null, "Le password non corrispondono");*/
+                    JOptionPane.showMessageDialog((Component)null, "Dati non completi");}
                 else if(registati==premuto)
                 {
-                    dispose();
-                    new Menu();
+
+                    try {
+                        StringBuilder sb = new StringBuilder();
+                        righe.add(nomeUtenteDaInserire.getText());
+                        righe.add(passwordDainserire.getText());
+                        for (String riga : righe) {
+                            sb.append(riga).append("\n");
+                        }
+
+                        Files.writeString(Paths.get("testo.txt"), sb.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+
+                        JOptionPane.showMessageDialog(null, "Registrazione completata con successo!");
+                        dispose();
+                        new Login();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");
+                        ex.printStackTrace();
+                    }
                 }
+
             }
         });
 
