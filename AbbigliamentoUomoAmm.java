@@ -142,7 +142,8 @@ public class AbbigliamentoUomoAmm extends JFrame{
                 JButton c=(JButton)e.getSource();
                 if(tornaMenu==c)
                 {
-
+                dispose();
+                new Menuamm();
                 }
             }
         });

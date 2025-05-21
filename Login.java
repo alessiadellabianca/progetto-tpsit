@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
@@ -24,7 +25,6 @@ public class Login extends JFrame {
     JButton registati = new JButton("REGISTRATI");
     JButton amministatore = new JButton("PERSONALE");
     List<String> righe = new ArrayList<>();
-
 
     public Login() {
         try {
@@ -77,6 +77,7 @@ public class Login extends JFrame {
             }
         });
 
+
         this.registati.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JButton premuto = (JButton)e.getSource();
@@ -105,6 +106,12 @@ public class Login extends JFrame {
 
                         if(user.equalsIgnoreCase(nomeDainserire.getText().trim()) && pass.equals(passwordDainserire.getText().trim()))
                         {
+                            try {
+                                Files.writeString(Paths.get("nomeaccesso.txt"),nomeDainserire.getText(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");
+                                ex.printStackTrace();
+                            }
 
                             dispose();
                             new Menu();
@@ -115,6 +122,8 @@ public class Login extends JFrame {
                 }
             }
         });
+
+
     }
 
     public static void main(String[] args) {

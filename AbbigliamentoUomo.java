@@ -195,6 +195,7 @@ public class AbbigliamentoUomo extends JFrame{
                 JButton c=(JButton)e.getSource();
                 if(tornaMenu==c)
                 {
+                    dispose();
                     new Menu();
                 }
             }
