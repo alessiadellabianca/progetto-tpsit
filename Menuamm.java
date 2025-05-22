@@ -55,10 +55,14 @@ public class Menuamm extends JFrame {
                             }
                             else if (lista[3].equals(t))
                             {
+                                dispose();
+                                new LibriAmm();
 
                             }
                             else if (lista[4].equals(t))
                             {
+                                dispose();
+                                new InformaticaAmm();
 
                             }
                         }
@@ -85,10 +89,12 @@ public class Menuamm extends JFrame {
                     }else if(ricerca.getText().equals("libri")||ricerca.getText().equals("Libri"))
                     {
                         dispose();
-                       // new LibriAmm();
+                       new LibriAmm();
 
                     }else if(ricerca.getText().equals("informatica")||ricerca.getText().equals("Informatica"))
                     {
+                        dispose();
+                        new InformaticaAmm();
 
 
                     }else

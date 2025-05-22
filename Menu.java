@@ -2,7 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Menu extends JFrame {
 
@@ -121,12 +127,45 @@ public class Menu extends JFrame {
                 JButton premuto=(JButton)e.getSource();
                 if(listaordine==premuto)
                 {
-                    dispose();
-                    new VerificaOrdine();
+                    visualizzaOrdine();
                 }
             }
         });
 
+    }
+
+    public void visualizzaOrdine()
+    {
+        List<String> ordini = new ArrayList<>();
+        int flag=0;
+        String primaRiga=null;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("nomeaccesso.txt"))) {
+            primaRiga = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ordini= Files.readAllLines(Paths.get("ordini.txt"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for(int i=0;i<ordini.size();i++)
+        {
+            if(ordini.get(i).contains(primaRiga))
+            {
+                //lista.append("ORDINE TROVATO \nNumero traccimento: " + ordini.get(i - 1) + "\nNome utente: " + ordini.get(i) + "\nIndrizzo di spedizione: " + ordini.get(i + 1) + "\nComune di spedizione: " + ordini.get(i + 2) + "\nTotale ordine: " + ordini.get(i + 3) + "\nStato ordine: CONFERMATO");
+                JOptionPane.showMessageDialog(null,"ORDINE TROVATO \nNumero traccimento: " + ordini.get(i - 1) + "\nNome utente: " + ordini.get(i) + "\nIndrizzo di spedizione: " + ordini.get(i + 1) + "\nComune di spedizione: " + ordini.get(i + 2) + "\nTotale ordine: " + ordini.get(i + 3) + "\nStato ordine: CONFERMATO");
+                i = 100;
+                flag=1;
+            }
+        }
+        if(flag==0)
+        {
+            JOptionPane.showMessageDialog(null,"Nessun ordine effettuato con questo account");
+        }
     }
 
     public void setCarrello(ArrayList<String> carrello) {

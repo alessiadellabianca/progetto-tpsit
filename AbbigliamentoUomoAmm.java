@@ -148,13 +148,6 @@ public class AbbigliamentoUomoAmm extends JFrame{
             }
         });
 
-        tornaMenu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new Menuamm();
-            }
-        });
 
 
         this.setLayout(new BorderLayout());

@@ -98,13 +98,17 @@ public class Pagamento extends JFrame{
                 }
                 else {
                     try {
-                        conc = generaTracciamento()+"\n"+nome +"\n"+indirizzo+ "\n"+comune+"\n" + tot+"\n";
-                        Files.writeString(Paths.get("ordini.txt"), conc, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-                    } catch (Exception ex) {
+                        conc ="\n"+generaTracciamento()+"\n"+nome +"\n"+indirizzo+ "\n"+comune+"\n" + tot+"\n";
+                        Files.writeString(
+                                Paths.get("ordini.txt"),
+                                conc,
+                                StandardOpenOption.CREATE,
+                                StandardOpenOption.APPEND
+                        );   } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");
                         ex.printStackTrace();
                     }
-                    JOptionPane.showMessageDialog(null,"Ordine confermato per un totale di"+tot);
+                    JOptionPane.showMessageDialog(null,"Ordine confermato per un totale di "+tot);
 
                 }
             }

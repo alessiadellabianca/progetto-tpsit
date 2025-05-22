@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Libri extends JFrame {
     String[] libri = new String[]{"Fantasy","Fantascienza","Giallo","Narrativa","Romanzo Storico"};
@@ -15,11 +18,11 @@ public class Libri extends JFrame {
             {"I promessi sposi","Ivanhoe","Guerra e pace","Il gattopardo","I tre moschettieri"}
     };
     int[][] prezzi = {
-            {20, 25, 45, 50, 20},  // Fantasy
-            {15, 20, 20, 30},      // Fantascienza
-            {10, 15, 20, 15},      // Giallo
-            {15, 10, 10, 15, 15},  // Narrativa
-            {25, 20, 15, 15, 15}   // Romanzo Storico
+            {20, 25, 45, 50, 20},
+            {15, 20, 20, 30},
+            {10, 15, 20, 15},
+            {15, 10, 10, 15, 15},
+            {25, 20, 15, 15, 15}
     };
 
     String[][] descrizioni = {
@@ -43,12 +46,19 @@ public class Libri extends JFrame {
     JButton vis= new JButton("VISUALIZZA CARRELLO");
     JButton tornaMenu=new JButton("CAMBIA CATEGORIA");
     JButton logOut=new JButton("LOGOUT");
+    List<String> righe = new ArrayList<>();
 
     JComboBox<String> lib = new JComboBox<>(libri);
     int prezzo=0;
 
     public Libri(ArrayList<String> carrello, ArrayList<Integer> conto)
     {
+        try {
+            righe= Files.readAllLines(Paths.get("libri.txt"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         setTitle("Catalogo libri");
         lib.setBounds(20, 20, 150, 25);
         add(lib);
@@ -84,110 +94,189 @@ public class Libri extends JFrame {
 
                 String prodotto = listaProdotti.getSelectedValue();
                 if (prodotto.equals("Il trono di spade")) {
-                    prezzo=20;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" +prezzo+"\nDescrizione: Romanzo fantasy scritto da George R. R. Martin");
+                    if (righe.contains(prodotto)) {
+                        prezzo = 20;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Romanzo fantasy scritto da George R. R. Martin");
+                    }
+                    else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
+
                 } else if(prodotto.equals("Il signore degli anelli"))
                 {
-                    prezzo=25;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: Romanzo fantasy scritto da J. R. R. Tolkien");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 25;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Romanzo fantasy scritto da J. R. R. Tolkien");
+                    }
+                    else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }  else if(prodotto.equals("Le cronache di Narnia"))
                 {
-                    prezzo=45;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:+"+prezzo+"\nDescrizione: Serie di libri fantasy per ragazzi scritti da C.S. Lewis");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 45;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:+" + prezzo + "\nDescrizione: Serie di libri fantasy per ragazzi scritti da C.S. Lewis");
+                    }
+                    else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 } else if(prodotto.equals("Harry Potter"))
                 {
-                    prezzo=50;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: Serie di libri fantasy per ragazzi scritti da J.K. Rowling");
+                    if (righe.contains(prodotto)) {
+                        prezzo = 50;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Serie di libri fantasy per ragazzi scritti da J.K. Rowling");
+                    }
+                    else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 } else if(prodotto.equals("Lo Hobbit"))
-                {
-                    prezzo=20;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: Romanzo fantasy di J.R.R. Tolkien");
+                {if (righe.contains(prodotto)) {
+                    prezzo = 20;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Romanzo fantasy di J.R.R. Tolkien");
+                }
+                else {
+                    dettagli.setText("Prodotto attualmente non disponibile");
+                }
                 } else if(prodotto.equals("Frankenstein"))
                 {
-                    prezzo=15;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: Romanzo fantascientifico di Mary Shelley");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 15;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Romanzo fantascientifico di Mary Shelley");
+                    }
+                    else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Dune"))
                 {
-                    prezzo=20;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:"+prezzo+"\nDescrizione: Romanzo fantascientifico di Frank Herbert");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 20;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:" + prezzo + "\nDescrizione: Romanzo fantascientifico di Frank Herbert");
+                    }
+                    else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("1984"))
                 {
-                    prezzo=20;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo fantascientifico di George Orwell");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 20;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo fantascientifico di George Orwell");
+                    }
+                    else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Le cronache marziane"))
                 {
-                    prezzo=30;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Raccolta di racconti di fantascienza di Ray Bradbury");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 30;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Raccolta di racconti di fantascienza di Ray Bradbury");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Pioggia per i bastardi di Pizzofalcone"))
                 {
-                    prezzo=10;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo giallo di Maurizio de Giovanni");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 10;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo giallo di Maurizio de Giovanni");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Dieci piccoli indiani"))
                 {
-                    prezzo=15;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo giallo di Agatha Christie");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 15;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo giallo di Agatha Christie");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Il padrino"))
                 {
-                    prezzo=20;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo giallo di Mario Puzo");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 20;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo giallo di Mario Puzo");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Hannibal"))
-                {
-                    prezzo=15;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo giallo di Thomas Harris");
-
+                {if (righe.contains(prodotto)) {
+                    prezzo = 15;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo giallo di Thomas Harris");
+                }else {
+                    dettagli.setText("Prodotto attualmente non disponibile");
+                }
                 }else if(prodotto.equals("Istella mea"))
                 {
-                    prezzo=15;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo di narrativa di Ciriaco Offeddu");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 15;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo di narrativa di Ciriaco Offeddu");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("La prima regina"))
                 {
-                    prezzo=10;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €"+prezzo+"\nDescrizione: Romanzo di narrativa di Alessandra Selmi");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 10;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €" + prezzo + "\nDescrizione: Romanzo di narrativa di Alessandra Selmi");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Onesto"))
                 {
-                    prezzo=10;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo di narrativa di Francesco Vidotto");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 10;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo di narrativa di Francesco Vidotto");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("L'Anniversario"))
                 {
-                    prezzo=15;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo di narrativa di Andrea Bajani");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 15;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo di narrativa di Andrea Bajani");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("I sette corvi")) {
-                    prezzo = 15;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo di narrativa di Matteo Strukul");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 15;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo di narrativa di Matteo Strukul");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("I promessi sposi")) {
-                    prezzo = 25;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Alessandro Manzoni");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 25;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Alessandro Manzoni");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Ivanhoe")) {
-                    prezzo = 20;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Walter Scott");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 20;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Walter Scott");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Guerra e pace")) {
-                    prezzo = 15;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Lev Tolstoj");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 15;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Lev Tolstoj");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("Il gattopardo")) {
-                    prezzo = 15;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Giuseppe Tomasi di Lampedusa");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 15;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Giuseppe Tomasi di Lampedusa");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }else if(prodotto.equals("I tre moschettieri")) {
-                    prezzo = 15;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Alexandre Dumas");
-
+                    if (righe.contains(prodotto)) {
+                        prezzo = 15;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Alexandre Dumas");
+                    }else {
+                        dettagli.setText("Prodotto attualmente non disponibile");
+                    }
                 }
             }
         });
@@ -288,9 +377,6 @@ public class Libri extends JFrame {
                 }
             }
         });
-
-
-
 
 
         this.setLayout(new BorderLayout());

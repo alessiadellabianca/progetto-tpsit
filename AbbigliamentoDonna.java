@@ -83,7 +83,6 @@ public class AbbigliamentoDonna extends JFrame {
                 int i= abb.getSelectedIndex();
                 listaProdotti.setListData(tutti[i]);
                 dettagli.setText("");
-
             }
         });
 
@@ -113,10 +112,10 @@ public class AbbigliamentoDonna extends JFrame {
 
                 }  else if(prodotto.equals("Felpa con zip"))
                 {
-
-                    prezzo=30;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:+"+prezzo+"\nDescrizione: felpa tinta unica con zip, disponibile in altri colori");
-                } else if(prodotto.equals("Maglione lana"))
+                    if(righe.contains(prodotto)) {
+                        prezzo = 30;
+                        dettagli.setText("Prodotto: " + prodotto + "\nPrezzo:+" + prezzo + "\nDescrizione: felpa tinta unica con zip, disponibile in altri colori");
+                    }} else if(prodotto.equals("Maglione lana"))
                 {
                     if(righe.contains(prodotto))
                     {

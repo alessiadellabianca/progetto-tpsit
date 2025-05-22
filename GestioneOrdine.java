@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -29,14 +30,22 @@ public class GestioneOrdine extends JFrame {
 
     int tot;
     List<String> righe = new ArrayList<>();
+
+    List<String> ordini = new ArrayList<>();
     String nome;
     String conc;
 
 
     GestioneOrdine(ArrayList<String> carrello, ArrayList<Integer> conto) {
         try {
-            righe = Files.readAllLines(Paths.get("nomeaccesso.txt"));
-            nome = righe.getLast();
+             righe = Files.readAllLines(Paths.get("nomeaccesso.txt"));
+            nome = righe.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ordini = Files.readAllLines(Paths.get("ordini.txt"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,9 +123,14 @@ public class GestioneOrdine extends JFrame {
                 } else if (conferma == prem && pag2.isSelected()) {
 
                     try {
-                        conc = generaTracciamento()+"\n"+nome +"\n"+insersciIndi.getText()+ "\n"+insersciComune+"\n" + tot+"\n";
-                        Files.writeString(Paths.get("ordini.txt"), conc, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-                        JOptionPane.showMessageDialog(null, "Ordine confermato, alla consegna si dovrà pagare");
+                        conc="\n"+generaTracciamento()+"\n"+nome +"\n"+insersciIndi.getText()+ "\n"+insersciComune.getText()+"\n" + tot+"\n";
+                        Files.writeString(
+                                Paths.get("ordini.txt"),
+                              conc,
+                                 StandardOpenOption.CREATE,
+                                StandardOpenOption.APPEND
+                        );
+                        JOptionPane.showMessageDialog(null,"Ordine cofermato");
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");
                         ex.printStackTrace();
