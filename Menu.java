@@ -89,7 +89,6 @@ public class Menu extends JFrame {
                     }else if(ricerca.getText().equals("libri")||ricerca.getText().equals("Libri"))
                     {
 
-
                     }else if(ricerca.getText().equals("informatica")||ricerca.getText().equals("Informatica"))
                     {
 

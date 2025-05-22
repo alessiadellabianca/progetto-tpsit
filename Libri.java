@@ -252,8 +252,23 @@ public class Libri extends JFrame {
                     });
                 }else if(prodotto.equals("Istella mea"))
                 {
+                    prezzo=15;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo di narrativa di Ciriaco Offeddu");
+                    agg.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JButton premuto=(JButton)e.getSource();
+                            if(premuto==agg)
+                            {
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
+                            }
+                        }
+                    });
+                }else if(prodotto.equals("La prima regina"))
+                {
                     prezzo=10;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: in lino puro morbido e fresco");
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €"+prezzo+"\nDescrizione: Romanzo di narrativa di Alessandra Selmi");
                     agg.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -265,10 +280,10 @@ public class Libri extends JFrame {
                             }
                         }
                     });
-                }else if(prodotto.equals("Slip bianco"))
+                }else if(prodotto.equals("Onesto"))
                 {
-                    prezzo=5;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €5\nDescrizione: slip tinta unita");
+                    prezzo=10;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo di narrativa di Francesco Vidotto");
                     agg.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -280,10 +295,10 @@ public class Libri extends JFrame {
                             }
                         }
                     });
-                }else if(prodotto.equals("Slip nero"))
+                }else if(prodotto.equals("L'Anniversario"))
                 {
-                    prezzo=5;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €5\nDescrizione: slip tinta unita");
+                    prezzo=15;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: "+prezzo+"\nDescrizione: Romanzo di narrativa di Andrea Bajani");
                     agg.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -295,16 +310,79 @@ public class Libri extends JFrame {
                             }
                         }
                     });
-                }else if(prodotto.equals("Scarpe running"))
-                {
-                    prezzo=110;
-                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: €110.00\nDescrizione: scarpe adatte per la corsa");
+                }else if(prodotto.equals("I sette corvi")) {
+                    prezzo = 15;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo di narrativa di Matteo Strukul");
                     agg.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            JButton premuto=(JButton)e.getSource();
-                            if(premuto==agg)
-                            {
+                            JButton premuto = (JButton) e.getSource();
+                            if (premuto == agg) {
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
+                            }
+                        }
+                    });
+                }else if(prodotto.equals("I promessi sposi")) {
+                    prezzo = 25;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Alessandro Manzoni");
+                    agg.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JButton premuto = (JButton) e.getSource();
+                            if (premuto == agg) {
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
+                            }
+                        }
+                    });
+                }else if(prodotto.equals("Ivanhoe")) {
+                    prezzo = 20;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Walter Scott");
+                    agg.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JButton premuto = (JButton) e.getSource();
+                            if (premuto == agg) {
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
+                            }
+                        }
+                    });
+                }else if(prodotto.equals("Guerra e pace")) {
+                    prezzo = 15;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Lev Tolstoj");
+                    agg.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JButton premuto = (JButton) e.getSource();
+                            if (premuto == agg) {
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
+                            }
+                        }
+                    });
+                }else if(prodotto.equals("Il gattopardo")) {
+                    prezzo = 15;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Giuseppe Tomasi di Lampedusa");
+                    agg.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JButton premuto = (JButton) e.getSource();
+                            if (premuto == agg) {
+                                carrello.add(prodotto);
+                                conto.add(prezzo);
+                            }
+                        }
+                    });
+                }else if(prodotto.equals("I tre moschettieri")) {
+                    prezzo = 15;
+                    dettagli.setText("Prodotto: " + prodotto + "\nPrezzo: " + prezzo + "\nDescrizione: Romanzo storico di Alexandre Dumas");
+                    agg.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JButton premuto = (JButton) e.getSource();
+                            if (premuto == agg) {
                                 carrello.add(prodotto);
                                 conto.add(prezzo);
                             }
