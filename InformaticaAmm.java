@@ -18,6 +18,7 @@ public class InformaticaAmm extends JFrame {
     };
 
     JButton elimina=new JButton("RENDI NON DISPONIBILE");
+    JButton agg=new JButton("RENDI DISPONIBILE");
     JButton tornaMenu=new JButton("CAMBIA CATEGORIA");
     JButton logOut=new JButton("LOGOUT");
     List<String> righe = new ArrayList<>();
@@ -42,12 +43,14 @@ public class InformaticaAmm extends JFrame {
         JTextArea dettagli = new JTextArea();
         dettagli.setBounds(200, 20, 450, 140);
         add(dettagli);
-        tornaMenu.setBounds(20, 210, 200, 30);
-        elimina.setBounds(270, 210, 200, 30);
-        logOut.setBounds(100, 270, 200, 30);
-        add(logOut);
-        add(elimina);
+        agg.setBounds(200, 220, 200, 30);
+        tornaMenu.setBounds(450, 220, 200, 30);
+        elimina.setBounds(200, 270, 200, 30);
+        logOut.setBounds(450, 270, 200, 30);
+        add(agg);
         add(tornaMenu);
+        add(elimina);
+        add(logOut);
 
 
 
@@ -240,6 +243,29 @@ public class InformaticaAmm extends JFrame {
                 {
                     dispose();
                     new Login();
+                }
+            }
+        });
+
+        agg.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String prodotto = listaProdotti.getSelectedValue();
+                if (prodotto != null && !righe.contains(prodotto)) {
+                    righe.add(prodotto);
+                    dettagli.setText("Prodotto di nuovo disponibile, pagina in ricarica...");
+                    try {
+                        StringBuilder sb = new StringBuilder();
+                        for (String riga : righe) {
+                            sb.append(riga).append("\n");
+                        }
+                        Files.writeString(Paths.get("listadonna.txt"), sb.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");
+                        ex.printStackTrace();
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(null,"Prodotto gia' disponibile");
                 }
             }
         });

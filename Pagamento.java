@@ -91,10 +91,8 @@ public class Pagamento extends JFrame{
         conf.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JButton prem=(JButton)e.getSource();
                 if (insercinum.getText().isEmpty() || inserciCvc.getText().isEmpty() || inserciTit.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Campi non compilati correttamente");
-
                 }
                 else {
                     try {
@@ -117,15 +115,12 @@ public class Pagamento extends JFrame{
         applica.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JButton prem=(JButton)e.getSource();
-                if(applica==prem)
-                {
+
                     if (insercicodicesconto.getText().equals("Informatica25")) {
                         tot = tot - (tot * 10 / 100);
-                        conto.setText("Il totale del conto da pagare è pari a " + tot + " euro.");
+                        System.out.println(tot);
                         JOptionPane.showMessageDialog(null, "Codice sconto applicato!");
                     }
-                }
             }
         });
 
