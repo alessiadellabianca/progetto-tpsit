@@ -8,7 +8,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Informatica extends JFrame {
+public class InformaticaAmm extends JFrame {
     String[] informatica = new String[]{"Smartphone IOS","Smartphone Android","Accessori"};
 
     String[][] tutti= {
@@ -17,20 +17,7 @@ public class Informatica extends JFrame {
             {"Mouse","Tastiera","Caricatore USB-C","Caricaotre Lightning","Cuffiette"}
     };
 
-    int[][] prezzi = {
-            {1100, 900, 700, 550},
-            {1200, 900, 650},
-            {30, 40, 10, 10, 25}
-    };
-
-    String[][] descrizioni = {
-            {"CPU Apple A18 6 core, ROM 128/256/512 GB", "CPU Apple A16 6 core, ROM 128/256/512 GB", "CPU Apple A15 6 core, ROM 128/256/512 GB", "CPU Apple A15 6 core, ROM 128/256/512 GB"},
-            {"CPU Snapdragon 8 ELITE, ROM 128/256/512 GB", "CPU Snapdragon 8, ROM 128/256/512 GB", "CPU Snapdragon 7, ROM 128/256/512 GB"},
-            {"Mouse per pc con attacco USB", "Tastiera per pc con attacco USB", "Caricatore per smartphone USB-C", "Caricatore per smartphone lightning", "Cuffiette auricolari semplici"}
-    };
-
-    JButton agg= new JButton("AGGIUNGI AL CARRELLO");
-    JButton vis= new JButton("VISUALIZZA CARRELLO");
+    JButton elimina=new JButton("RENDI NON DISPONIBILE");
     JButton tornaMenu=new JButton("CAMBIA CATEGORIA");
     JButton logOut=new JButton("LOGOUT");
     List<String> righe = new ArrayList<>();
@@ -38,7 +25,7 @@ public class Informatica extends JFrame {
     JComboBox<String> abb = new JComboBox<>(informatica);
     int prezzo=0;
 
-    public Informatica(ArrayList<String> carrello,ArrayList<Integer> conto)
+    public InformaticaAmm()
     {
         try {
             righe= Files.readAllLines(Paths.get("informatica.txt"));
@@ -55,14 +42,12 @@ public class Informatica extends JFrame {
         JTextArea dettagli = new JTextArea();
         dettagli.setBounds(200, 20, 450, 140);
         add(dettagli);
-        agg.setBounds(20, 210, 200, 30);
-        vis.setBounds(270, 210, 200, 30);
-        tornaMenu.setBounds(20, 270, 200, 30);
-        logOut.setBounds(270, 270, 200, 30);
-        add(agg);
-        add(vis);
-        add(tornaMenu);
+        tornaMenu.setBounds(20, 210, 200, 30);
+        elimina.setBounds(270, 210, 200, 30);
+        logOut.setBounds(100, 270, 200, 30);
         add(logOut);
+        add(elimina);
+        add(tornaMenu);
 
 
 
@@ -213,75 +198,24 @@ public class Informatica extends JFrame {
             }
         });
 
-        listaProdotti.addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                int catIndex = abb.getSelectedIndex();
-                int prodIndex = listaProdotti.getSelectedIndex();
-
-                if (catIndex >= 0 && prodIndex >= 0) {
-                    String nome = tutti[catIndex][prodIndex];
-                    int prezzo = prezzi[catIndex][prodIndex];
-                    String descrizione = descrizioni[catIndex][prodIndex];
-
-                    dettagli.setText("Prodotto: " + nome + "\nPrezzo: €" + prezzo + "\nDescrizione: " + descrizione);
-
-                    for (ActionListener al : agg.getActionListeners()) {
-                        agg.removeActionListener(al);
-                    }
-
-                    agg.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            carrello.add(nome);
-                            conto.add(prezzo);
-                            JOptionPane.showMessageDialog(null, nome + " aggiunto al carrello!");
-                        }
-                    });
-                }
-            }
-        });
-
-
-        vis.addActionListener(new ActionListener() {
+        elimina.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JButton premuto=(JButton)e.getSource();
-                if(premuto==vis)
-                {
-                    int tot=0;
-                    JFrame finestraCarrello = new JFrame("Carrello");
-                    finestraCarrello.setSize(400, 300);
-                    finestraCarrello.setLayout(new BorderLayout());
-                    JButton t=new JButton("Torna alla zona acquisti");
-                    JButton termina=new JButton("CONCLUDI ORDINE");
-                    JTextArea car = new JTextArea();
-                    StringBuilder contenuto = new StringBuilder("PRODOTTI NEL CARRELLO:\n\n");
-                    contenuto.append("- ").append(carrello).append("\n");
-                    for(Integer c:conto)
-                    {
-                        tot=tot+c;
-                    }
-                    contenuto.append("\nTOTALE: €").append(tot);
+                String prodotto = listaProdotti.getSelectedValue();
+                if (prodotto != null && righe.contains(prodotto)) {
+                    righe.remove(prodotto);
+                    dettagli.setText("Prodotto non disponibile");
 
-
-
-                    car.setText(contenuto.toString());
-                    finestraCarrello.add(termina,BorderLayout.NORTH);
-                    finestraCarrello.add(new JScrollPane(car), BorderLayout.CENTER);
-                    finestraCarrello.setVisible(true);
-
-                    termina.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JButton prem= (JButton)e.getSource();
-                            if(prem==termina)
-                            {
-                                dispose();
-                                new GestioneOrdine(carrello,conto);
-                            }
+                    try {
+                        StringBuilder sb = new StringBuilder();
+                        for (String riga : righe) {
+                            sb.append(riga).append("\n");
                         }
-                    });
-
+                        Files.writeString(Paths.get("listauomo.txt"), sb.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");
+                        ex.printStackTrace();
+                    }
                 }
             }
         });
@@ -293,7 +227,7 @@ public class Informatica extends JFrame {
                 if(tornaMenu==c)
                 {
                     dispose();
-                    new Menu();
+                    new Menuamm();
                 }
             }
         });
