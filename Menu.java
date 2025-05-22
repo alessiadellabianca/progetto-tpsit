@@ -81,7 +81,8 @@ public class Menu extends JFrame {
                  }
                  else if (lista[4].equals(t))
                  {
-
+                     dispose();
+                     new Informatica(carrello,conto);
                  }
             }
         }
@@ -111,7 +112,8 @@ public class Menu extends JFrame {
 
                     }else if(ricerca.getText().equals("informatica")||ricerca.getText().equals("Informatica"))
                     {
-
+                        dispose();
+                        new Informatica(carrello,conto);
 
                     }else
                     {
