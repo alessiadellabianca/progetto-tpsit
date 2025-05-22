@@ -259,7 +259,7 @@ public class InformaticaAmm extends JFrame {
                         for (String riga : righe) {
                             sb.append(riga).append("\n");
                         }
-                        Files.writeString(Paths.get("listadonna.txt"), sb.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+                        Files.writeString(Paths.get("informatica.txt"), sb.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");
                         ex.printStackTrace();

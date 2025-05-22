@@ -1,3 +1,5 @@
+Felpa nera
+Felpa Bianca
 Felpa con zip
 Maglione lana
 Maglione con orso
@@ -9,6 +11,6 @@ Berretta
 Jeans skinny
 Shorts in Jeans
 Shorts in lino
+Slip bianco
 Slip nero
 Scarpe running
-Slip bianco

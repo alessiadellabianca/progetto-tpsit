@@ -383,6 +383,4 @@ public class AbbigliamentoDonna extends JFrame {
         setVisible(true);
 
     }
-
-
 }

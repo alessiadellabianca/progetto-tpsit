@@ -82,7 +82,7 @@ public class Amministratore extends JFrame {
                     {
                         if(passwordDainserire.getText().equals("magazziniere2025"))
                         {
-                            System.out.println("ei");
+                            JOptionPane.showMessageDialog(null,"Pagina in corso di sviluppo");
                         }else {
                             JOptionPane.showMessageDialog(null,"accesso bloccato");
                         }
