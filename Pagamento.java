@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class Pagamento extends JFrame{
@@ -22,6 +23,7 @@ public class Pagamento extends JFrame{
 
     JButton conf=new JButton("CONFERMA");
     JButton applica=new JButton("APPLICA");
+    JButton log=new JButton("LOGOUT");
 
 
     List<String> righe = new ArrayList<>();
@@ -31,7 +33,7 @@ public class Pagamento extends JFrame{
 
 
 
-    Pagamento(String nome,int cont)
+    Pagamento(String nome,int cont,String indirizzo,String comune)
     {
 
         this.tot=cont;
@@ -72,13 +74,19 @@ public class Pagamento extends JFrame{
         b.gridx = 1;
         b.gridy = 4;
         add(insercicodicesconto,b);
+        b.insets = new Insets(0, 10, 0, 0);
         b.gridx = 2;
         b.gridy = 4;
         add(applica,b);
         b.insets = new Insets(10, 0, 10, 0);
-        b.gridx = 2;
+        b.gridx = 0;
         b.gridy = 5;
         add(conf,b);
+        b.gridx = 1;
+        b.gridy = 5;
+        add(log,b);
+
+
 
         conf.addActionListener(new ActionListener() {
             @Override
@@ -90,13 +98,13 @@ public class Pagamento extends JFrame{
                 }
                 else {
                     try {
-                        conc=nome+"\n"+tot;
-                        Files.writeString(Paths.get("ordine.txt"), conc, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+                        conc = generaTracciamento()+"\n"+nome +"\n"+indirizzo+ "\n"+comune+"\n" + tot+"\n";
+                        Files.writeString(Paths.get("ordini.txt"), conc, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");
                         ex.printStackTrace();
                     }
-                    JOptionPane.showMessageDialog(null,"Ordine confermato per un totale di"+20);
+                    JOptionPane.showMessageDialog(null,"Ordine confermato per un totale di"+tot);
 
                 }
             }
@@ -117,11 +125,31 @@ public class Pagamento extends JFrame{
             }
         });
 
+
+        log.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton prem=(JButton)e.getSource();
+
+                if(prem==log)
+                {
+                    dispose();
+                    new Login();
+                }
+            }
+        });
+
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(800, 700);
         pack();
         this.setVisible(true);
+    }
 
-
+    public int generaTracciamento()
+    {
+        Random rand = new Random();
+        int numero;
+        numero= rand.nextInt(301) + 200;
+        return numero;
     }
 }

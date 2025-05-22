@@ -107,6 +107,7 @@ public class Login extends JFrame {
                         if(user.equalsIgnoreCase(nomeDainserire.getText().trim()) && pass.equals(passwordDainserire.getText().trim()))
                         {
                             try {
+                                Files.write(Paths.get("nomeaccesso.txt"), new byte[0], StandardOpenOption.TRUNCATE_EXISTING);
                                 Files.writeString(Paths.get("nomeaccesso.txt"),nomeDainserire.getText(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
                             } catch (Exception ex) {
                                 JOptionPane.showMessageDialog(null, "Errore durante la scrittura sul file");

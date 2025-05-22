@@ -9,6 +9,8 @@ public class Menu extends JFrame {
     public ArrayList<String> carrello=new ArrayList<>();
     public ArrayList<Integer> conto=new ArrayList<>();
 
+    public JButton listaordine=new JButton("VISUALIZZA ORDINI");
+
 
     JLabel cerca = new JLabel("Ricerca: ");
     JTextField ricerca = new JTextField(20);
@@ -39,6 +41,12 @@ public class Menu extends JFrame {
         b.gridx=1;
         b.gridy=3;
         add(tutto,b);
+        b.insets = new Insets(10,0,10,0);
+        b.gridx=0;
+        b.gridy=4;
+        add(listaordine,b);
+
+
         this.pack();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(500, 300);
@@ -62,6 +70,8 @@ public class Menu extends JFrame {
                  else if (lista[3].equals(t))
                  {
 
+                     dispose();
+                     new Libri(carrello,conto);
                  }
                  else if (lista[4].equals(t))
                  {
@@ -80,14 +90,18 @@ public class Menu extends JFrame {
                 {
                     if(ricerca.getText().equals("abbigliamento donna")||ricerca.getText().equals("Abbigliamento donna"))
                     {
+                        dispose();
                         new AbbigliamentoDonna(carrello,conto);
 
                     }else if(ricerca.getText().equals("abbigliamento uomo")||ricerca.getText().equals("Abbigliamento uomo"))
                     {
+                        dispose();
                         new AbbigliamentoUomo(carrello,conto);
 
                     }else if(ricerca.getText().equals("libri")||ricerca.getText().equals("Libri"))
                     {
+                        dispose();
+                        new Libri(carrello,conto);
 
                     }else if(ricerca.getText().equals("informatica")||ricerca.getText().equals("Informatica"))
                     {
@@ -97,6 +111,18 @@ public class Menu extends JFrame {
                     {
                         JOptionPane.showMessageDialog(null,"Ricerca non possibile,riprova");
                     }
+                }
+            }
+        });
+
+        listaordine.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton premuto=(JButton)e.getSource();
+                if(listaordine==premuto)
+                {
+                    dispose();
+                    new VerificaOrdine();
                 }
             }
         });

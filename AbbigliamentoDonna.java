@@ -344,6 +344,7 @@ public class AbbigliamentoDonna extends JFrame {
                             JButton prem= (JButton)e.getSource();
                             if(prem==termina)
                             {
+                                dispose();
                                 new GestioneOrdine(carrello,conto);
                             }
                         }
@@ -359,6 +360,7 @@ public class AbbigliamentoDonna extends JFrame {
                 JButton c=(JButton)e.getSource();
                 if(tornaMenu==c)
                 {
+                    dispose();
                     new Menu();
                 }
             }
@@ -370,6 +372,7 @@ public class AbbigliamentoDonna extends JFrame {
                 JButton c=(JButton)e.getSource();
                 if(logOut==c)
                 {
+                    dispose();
                     new Login();
                 }
             }

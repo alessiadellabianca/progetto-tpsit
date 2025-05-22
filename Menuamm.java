@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class Menuamm extends JFrame {
 
-
-
     JLabel cerca = new JLabel("Ricerca: ");
     JTextField ricerca = new JTextField(20);
     JButton bottoneCerca= new JButton("CERCA");
@@ -76,15 +74,18 @@ public class Menuamm extends JFrame {
                 {
                     if(ricerca.getText().equals("abbigliamento donna")||ricerca.getText().equals("Abbigliamento donna"))
                     {
+                        dispose();
                         new AbbigliamentoDonnaAmm();
 
                     }else if(ricerca.getText().equals("abbigliamento uomo")||ricerca.getText().equals("Abbigliamento uomo"))
                     {
+                        dispose();
                         new AbbigliamentoUomoAmm();
 
                     }else if(ricerca.getText().equals("libri")||ricerca.getText().equals("Libri"))
                     {
-
+                        dispose();
+                       // new LibriAmm();
 
                     }else if(ricerca.getText().equals("informatica")||ricerca.getText().equals("Informatica"))
                     {
