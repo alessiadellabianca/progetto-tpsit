@@ -14,7 +14,6 @@ public class Amministratore extends JFrame {
     JLabel password = new JLabel("Password: ");
     JTextField passwordDainserire = new JTextField(20);
     JButton accedi = new JButton("ACCEDI ");
-    JButton registati = new JButton("REGISTRATI");
     JButton torna = new JButton("TORNA");
 
     public Amministratore() {
@@ -44,12 +43,8 @@ public class Amministratore extends JFrame {
         this.add(this.passwordDainserire, b);
         b.gridx = 0;
         b.gridy = 3;
-        b.insets = new Insets(50, 5, 50, 0);
-        this.add(registati,b);
-        b.gridx = 1;
-        b.gridy = 3;
         this.add(accedi, b);
-        b.gridx = 2;
+        b.gridx = 1;
         b.gridy = 3;
         this.add(torna, b);
         this.pack();
@@ -94,17 +89,6 @@ public class Amministratore extends JFrame {
             }
         });
 
-        registati.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JButton premuto = (JButton)e.getSource();
-                if(premuto==registati)
-                {
-                    dispose();
-                    new Registrazione();
-                }
-            }
-        });
 
         torna.addActionListener(new ActionListener() {
             @Override
