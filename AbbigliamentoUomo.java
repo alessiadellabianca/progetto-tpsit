@@ -34,6 +34,7 @@ public class AbbigliamentoUomo extends JFrame{
     JButton agg= new JButton("AGGIUNGI AL CARRELLO");
     JButton vis= new JButton("VISUALIZZA CARRELLO");
     JButton tornaMenu=new JButton("CAMBIA CATEGORIA");
+    JButton logOut=new JButton("LOGOUT");
     List<String> righe = new ArrayList<>();
     public AbbigliamentoUomo(ArrayList<String> carrello,ArrayList<Integer> conto) {
 
@@ -55,10 +56,12 @@ public class AbbigliamentoUomo extends JFrame{
         add(dettagli);
         agg.setBounds(20, 210, 200, 30);
         vis.setBounds(270, 210, 200, 30);
-        tornaMenu.setBounds(100, 270, 200, 30);
+        tornaMenu.setBounds(20, 270, 200, 30);
+        logOut.setBounds(270, 270, 200, 30);
         add(agg);
         add(vis);
         add(tornaMenu);
+        add(logOut);
 
         abb.addActionListener(new ActionListener() {
             @Override
@@ -144,6 +147,18 @@ public class AbbigliamentoUomo extends JFrame{
                         dettagli.setText("Prodotto attualmente non disponibile");
                     }
 
+                }
+            }
+        });
+
+        logOut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton c=(JButton)e.getSource();
+                if(logOut==c)
+                {
+                    dispose();
+                    new Login();
                 }
             }
         });
